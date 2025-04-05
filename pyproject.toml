@@ -1,0 +1,15 @@
+[project]
+name = "ecommerce-dataset-checkout-data"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "pandas>=2.2.3",
+]
+
+[project.optional-dependencies]
+dev = [
+    "nbconvert>=7.16.6",
+    "nbformat>=5.10.4",
+]
