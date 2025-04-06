@@ -1,28 +1,29 @@
 ### 1. Create and Activate Python Virtual Environment
-
 ```bash
-# Create a Python virtual environment
 uv venv .venv --python 3.11
 
-# Activate the virtual environment
 source .venv/bin/activate
 ```
 
-### 2. Configure Airflow Environment
+### 2. Install requirements
 
 ```bash
-# Set environment variables
+uv pip install -r requirements.txt
+```
+
+### 3. Configure environment variables
+
+```bash
 export AIRFLOW_HOME="$(pwd)"/airflow
 export AIRFLOW__CORE__LOAD_EXAMPLES=False
 export AIRFLOW__CORE__DAGS_FOLDER="$(pwd)"/dags
-
-# Initialize the Airflow database
-airflow db migrate
 ```
 
-### 3. Create Admin User
+### 4. Create airflow database and create Admin User
 
 ```bash
+airflow db migrate
+
 airflow users create \
   --username admin \
   --firstname Admin \
@@ -32,17 +33,13 @@ airflow users create \
   --password admin
 ```
 
-### 4. Start Airflow Services
-
-Open two terminal windows to run these services:
+### 5. Start Airflow scheduler and webserver
 
 ```bash
-# Terminal 1: Start the Airflow scheduler
 airflow scheduler
 ```
 
 ```bash
-# Terminal 2: Start the Airflow webserver
 airflow webserver --port 8080
 ```
 
